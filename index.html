@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scientific Calculator</title>
+    <style>
+    body {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f8dfef;
+}
+
+.containera {
+  height: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 10px 10px 30px #edbee2;
+}
+
+.display #screen {
+  width: 97%;
+  height: 60px;
+  font-size: 35px;
+  outline: none;
+  border: none;
+  text-align: right;
+  padding-right: 0.5em;
+  background: #ecf0f3;
+  border-radius: 6px;
+  box-shadow: inset 5px 5px 8px #fab8de, inset -5px -5px 8px #fab8de;
+}
+
+.btns {
+  width: 100%;
+  margin-top: 1.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btns .row button {
+  width: 80px;
+  height: 30px;
+  font-size: 16px;
+  outline: none;
+  margin: 5px;
+  border-radius: 4px;
+  border: 1px solid #f168bf;
+}
+      
+        .cent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+      
+      .item #main-wrapper {
+    padding: 0px;
+}
+    </style>
+
+  </head>
+  <body>
+    <div class="cent">
+    <div class="containera">
+      <div class="display">
+        <input id="screen" type="text" placeholder="0" />
+      </div>
+      <div class="btns">
+        <div class="row">
+          <button onclick="backspace()">CE</button>
+          <button onclick="fact()">x!</button>
+          <button class="btn">(</button>
+          <button class="btn">)</button>
+          <button class="btn">%</button>
+          <button onclick="clearAll()" style="background-color: #f168bf">
+            AC
+          </button>
+        </div>
+
+        <div class="row">
+          <button onclick="sin()">sin</button>
+          <button onclick="pi()">π</button>
+          <button class="btn">7</button>
+          <button class="btn">8</button>
+          <button class="btn">9</button>
+          <button class="btn">÷</button>
+        </div>
+
+        <div class="row">
+          <button onclick="cos()">cos</button>
+          <button onclick="log()">log</button>
+          <button class="btn">4</button>
+          <button class="btn">5</button>
+          <button class="btn">6</button>
+          <button class="btn">×</button>
+        </div>
+
+        <div class="row">
+          <button onclick="tan()">tan</button>
+          <button onclick="sqrt()">√</button>
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn">-</button>
+        </div>
+
+        <div class="row">
+          <button onclick="e()">e</button>
+          <button onclick="power()">x <sup>2</sup></button>
+          <button class="btn">0</button>
+          <button class="btn">.</button>
+          <button onclick="solve()">=</button>
+          <button class="btn">+</button>
+        </div>
+      </div>
+    </div>
+    </div>
+        <script>
+    console.log("Scientific Calculator");
+
+var screen = document.querySelector('#screen');
+var btns = document.querySelectorAll('.btn');
+
+btns.forEach(
+    (btn) => btn.addEventListener('click', (e) => {
+        console.log(e.target);
+        btnText = e.target.innerText;
+        console.log(btnText);
+
+        if (btnText == "×") {
+            btnText = "*";
+        }
+        else if (btnText == "÷") {
+            btnText = "/";
+        }
+        screen.value += btnText;
+    })
+);
+
+function fact() {
+    let i = screen.value;
+    let sum = 1;
+    for (let j = 1; j <= i; j++) {
+        sum = sum * j;
+    }
+    screen.value = sum;
+}
+
+function backspace() {
+    screen.value = screen.value.slice(0, screen.value.length - 1);
+}
+
+function clearAll() {
+    screen.value = "";
+}
+
+function sin() {
+    screen.value = Math.sin(screen.value);
+}
+
+function cos() {
+    screen.value = Math.cos(screen.value);
+}
+
+function tan() {
+    screen.value = Math.tan(screen.value);
+}
+
+function power() {
+    screen.value = Math.pow(screen.value, 2);
+}
+
+function sqrt() {
+    screen.value = Math.sqrt(screen.value);
+}
+
+function log() {
+    screen.value = Math.log(screen.value);
+}
+
+function pi() {
+    screen.value = 3.14159265359;
+}
+
+function e() {
+    screen.value = 2.71828182846;
+}
+
+function solve() {
+    screen.value = eval(screen.value);
+}
+    </script>
+  </body>
+</html>
